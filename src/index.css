@@ -1,96 +1,71 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Bien-être au Féminin — Premium Wellness Design System
+   Sage Green #8A9A5B, Warm Sand #D2B48C, Cream #F9F7F2
+   All colors HSL.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Brand surfaces */
+    --background: 42 33% 97%;        /* Cream #F9F7F2 */
+    --foreground: 80 10% 18%;        /* Deep sage-charcoal */
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 80 10% 18%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 42 33% 97%;
+    --popover-foreground: 80 10% 18%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Sage Green primary */
+    --primary: 75 27% 48%;           /* #8A9A5B */
+    --primary-foreground: 42 33% 97%;
+    --primary-deep: 80 25% 28%;
+    --primary-soft: 75 28% 88%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Warm Sand accent */
+    --accent: 30 36% 68%;            /* #D2B48C */
+    --accent-foreground: 80 15% 18%;
+    --accent-soft: 30 40% 92%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 42 28% 93%;
+    --secondary-foreground: 80 15% 22%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 42 22% 92%;
+    --muted-foreground: 80 8% 42%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 60% 50%;
+    --destructive-foreground: 42 33% 97%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 42 18% 86%;
+    --input: 42 18% 86%;
+    --ring: 75 27% 48%;
 
-    --radius: 0.5rem;
+    --radius: 0.25rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Gradients & shadows */
+    --gradient-hero: linear-gradient(135deg, hsl(42 33% 97%) 0%, hsl(75 28% 92%) 100%);
+    --gradient-warm: linear-gradient(180deg, hsl(30 40% 95%) 0%, hsl(42 33% 97%) 100%);
+    --gradient-sage: linear-gradient(135deg, hsl(75 27% 48%) 0%, hsl(80 25% 38%) 100%);
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    --shadow-soft: 0 10px 40px -15px hsl(80 20% 30% / 0.15);
+    --shadow-card: 0 4px 20px -8px hsl(80 20% 30% / 0.12);
+    --shadow-elegant: 0 20px 60px -20px hsl(75 27% 30% / 0.25);
 
-    --sidebar-primary: 240 5.9% 10%;
+    --transition-smooth: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-primary-foreground: 0 0% 98%;
-
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
-  }
-
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-background: 42 33% 97%;
+    --sidebar-foreground: 80 10% 18%;
+    --sidebar-primary: 75 27% 48%;
+    --sidebar-primary-foreground: 42 33% 97%;
+    --sidebar-accent: 42 22% 92%;
+    --sidebar-accent-foreground: 80 10% 18%;
+    --sidebar-border: 42 18% 86%;
+    --sidebar-ring: 75 27% 48%;
   }
 }
 
@@ -99,7 +74,55 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground antialiased;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 500;
+    letter-spacing: -0.01em;
+  }
+}
+
+@layer utilities {
+  .font-serif {
+    font-family: 'Playfair Display', serif;
+  }
+  .font-sans {
+    font-family: 'Montserrat', sans-serif;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .bg-hero {
+    background: var(--gradient-hero);
+  }
+  .bg-warm {
+    background: var(--gradient-warm);
+  }
+  .bg-sage {
+    background: var(--gradient-sage);
+  }
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+  .shadow-card-soft {
+    box-shadow: var(--shadow-card);
+  }
+  .shadow-elegant {
+    box-shadow: var(--shadow-elegant);
+  }
+  .transition-smooth {
+    transition: var(--transition-smooth);
+  }
+  .container-narrow {
+    @apply mx-auto px-6 max-w-6xl;
   }
 }
