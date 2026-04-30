@@ -13,7 +13,14 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        serif: ["'Playfair Display'", "serif"],
+        sans: ["Montserrat", "sans-serif"],
+      },
       colors: {
+        "primary-deep": "hsl(var(--primary-deep))",
+        "primary-soft": "hsl(var(--primary-soft))",
+        "accent-soft": "hsl(var(--accent-soft))",
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
