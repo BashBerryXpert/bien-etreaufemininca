@@ -87,8 +87,8 @@ export const LeadMagnetDialog = () => {
                 required
                 className="h-11 bg-background"
               />
-              <Button type="submit" size="lg" className="w-full h-11">
-                Recevoir mon guide gratuit
+              <Button type="submit" size="lg" className="w-full h-11" disabled={submitting}>
+                {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Envoi…</> : "Recevoir mon guide gratuit"}
               </Button>
             </form>
             <div className="flex flex-wrap gap-4 mt-5 text-xs text-muted-foreground">
