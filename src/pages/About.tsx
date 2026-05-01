@@ -4,11 +4,11 @@ import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Link } from "react-router-dom";
 import portrait from "@/assets/chantal-portrait.jpg";
-import { Quote, Heart } from "lucide-react";
+import { Quote, Heart, Leaf, Sparkles, Users } from "lucide-react";
 
 const About = () => {
   useEffect(() => {
-    document.title = "À propos de Chantal Brisson | Bien-être au Féminin";
+    document.title = "À propos de Chantal | Bien-être au Féminin";
   }, []);
 
   return (
@@ -18,15 +18,21 @@ const About = () => {
       <section className="bg-hero py-20">
         <div className="container-narrow grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <span className="text-xs tracking-[0.3em] uppercase text-primary">Votre mentor en bien-être</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-primary">Naturopathe & Herboriste</span>
             <h1 className="font-serif text-4xl md:text-5xl mt-3 text-primary-deep text-balance">
-              Chantal Brisson
+              Chantal
             </h1>
             <p className="mt-5 text-lg text-foreground/75 italic font-serif">
-              « Une grande sœur bienveillante qui vous accompagne, sans jugement, vers votre meilleure version. »
+              « Maman, grand-maman et passionnée des richesses de la nature, je vous accompagne avec
+              tendresse vers une santé globale et naturelle. »
             </p>
           </div>
-          <img src={portrait} alt="Chantal Brisson" loading="lazy" className="rounded-sm shadow-elegant w-full max-w-sm h-[460px] object-cover mx-auto" />
+          <img
+            src={portrait}
+            alt="Chantal, naturopathe et herboriste"
+            loading="lazy"
+            className="rounded-sm shadow-elegant w-full max-w-sm h-[460px] object-cover mx-auto"
+          />
         </div>
       </section>
 
@@ -34,15 +40,15 @@ const About = () => {
         <div className="prose prose-lg max-w-none">
           <h2 className="font-serif text-3xl text-primary-deep">Mon histoire</h2>
           <p className="text-foreground/80 leading-relaxed">
-            Il y a plus de quinze ans, j'ai traversé moi-même les bouleversements de la périménopause.
-            Comme tant de femmes, je cherchais des réponses claires, sans alarmisme, sans jargon
-            médical. J'ai fait le constat qu'il existait un immense vide d'information bienveillante
-            pour les femmes du Québec.
+            Maman de quatre enfants et aujourd'hui grand-maman, j'ai consacré ma vie à soigner ma
+            famille avec les richesses de la nature. Ce qui était d'abord une pratique personnelle
+            est devenu une vocation : je me suis formée en naturopathie et en herboristerie pour
+            approfondir ce savoir.
           </p>
           <p className="text-foreground/80 leading-relaxed">
-            J'ai donc consacré ma vie professionnelle à combler ce manque : étudier, vulgariser,
-            accompagner. Aujourd'hui, des milliers de Québécoises me font confiance pour les guider
-            vers un mieux-être hormonal naturel.
+            Aujourd'hui, dans la cinquantaine, je traverse la ménopause avec sérénité grâce à ces
+            outils naturels. Mon souhait est de partager ces solutions douces et éprouvées avec
+            vous, peu importe votre étape de vie.
           </p>
 
           <div className="my-12 p-8 bg-accent-soft rounded-sm relative">
@@ -56,12 +62,26 @@ const About = () => {
           <h2 className="font-serif text-3xl text-primary-deep">Ma promesse</h2>
           <p className="text-foreground/80 leading-relaxed">
             Une approche éducative, accessible et profondément rassurante. Pas de promesses
-            miraculeuses, pas de pression commerciale — uniquement des outils concrets, validés et
-            faciles à intégrer dans votre quotidien.
+            miraculeuses — uniquement des outils concrets, validés par la tradition et la
+            naturopathie, faciles à intégrer dans votre quotidien.
           </p>
         </div>
 
-        <div className="mt-12 text-center">
+        <div className="grid sm:grid-cols-3 gap-5 mt-14">
+          {[
+            { icon: Leaf, title: "Naturopathie", desc: "Une science ancienne au service de votre équilibre." },
+            { icon: Sparkles, title: "Herboristerie", desc: "Le pouvoir des plantes, transmis simplement." },
+            { icon: Users, title: "Toutes les femmes", desc: "Quelle que soit votre étape de vie." },
+          ].map(({ icon: Icon, title, desc }) => (
+            <div key={title} className="bg-card rounded-sm p-6 shadow-card-soft text-center">
+              <Icon className="h-6 w-6 text-primary mx-auto mb-3" />
+              <h3 className="font-serif text-lg mb-2 text-primary-deep">{title}</h3>
+              <p className="text-sm text-foreground/70 leading-relaxed">{desc}</p>
+            </div>
+          ))}
+        </div>
+
+        <div className="mt-14 text-center">
           <Button asChild size="lg">
             <Link to="/guides"><Heart className="h-4 w-4 mr-2" /> Découvrir mes guides</Link>
           </Button>

@@ -5,7 +5,7 @@ export const Footer = () => {
     <footer className="bg-primary-deep text-primary-foreground mt-24">
       <div className="container-narrow py-16 grid md:grid-cols-4 gap-10">
         <div className="md:col-span-2">
-          <h3 className="font-serif text-2xl mb-3">Bien-être au Féminin</h3>
+          <p className="font-serif text-2xl mb-3">Bien-être au Féminin</p>
           <p className="text-sm opacity-80 max-w-sm leading-relaxed">
             L'accompagnement bienveillant de Chantal Brisson pour les femmes du Québec qui traversent
             la ménopause et les transitions hormonales avec sérénité.
