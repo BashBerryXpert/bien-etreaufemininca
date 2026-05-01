@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
 import { LeadMagnetDialog } from "@/components/LeadMagnetDialog";
 import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
+import { supabase } from "@/integrations/supabase/client";
 import { useCartSync } from "@/hooks/useCartSync";
 import heroImage from "@/assets/hero-woman.jpg";
 import portrait from "@/assets/chantal-portrait.jpg";
@@ -44,6 +45,7 @@ const Index = () => {
   const [products, setProducts] = useState<ShopifyProduct[]>([]);
   const [loading, setLoading] = useState(true);
   const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     document.title = "Bien-être au Féminin | Santé naturelle pour toutes les femmes";
@@ -61,11 +63,24 @@ const Index = () => {
     });
   }, []);
 
-  const handleNewsletter = (e: React.FormEvent) => {
+  const handleNewsletter = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    toast.success("Merci !", { description: "Votre guide gratuit arrive dans votre boîte courriel.", position: "top-center" });
-    setEmail("");
+    if (!email || submitting) return;
+    setSubmitting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("newsletter-subscribe", {
+        body: { email },
+      });
+      if (error || (data as { error?: string })?.error) {
+        throw new Error(error?.message || (data as { error?: string }).error);
+      }
+      toast.success("Merci !", { description: "Votre guide gratuit arrive dans votre boîte courriel.", position: "top-center" });
+      setEmail("");
+    } catch (err) {
+      toast.error("Une erreur est survenue", { description: (err as Error).message || "Veuillez réessayer." });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -210,8 +225,8 @@ const Index = () => {
                   required
                   className="h-12 bg-background"
                 />
-                <Button type="submit" size="lg" className="h-12 px-6 whitespace-nowrap">
-                  Recevoir gratuitement
+                <Button type="submit" size="lg" className="h-12 px-6 whitespace-nowrap" disabled={submitting}>
+                  {submitting ? "Envoi…" : "Recevoir gratuitement"}
                 </Button>
               </form>
               <div className="flex flex-wrap gap-5 mt-5 text-xs text-muted-foreground">

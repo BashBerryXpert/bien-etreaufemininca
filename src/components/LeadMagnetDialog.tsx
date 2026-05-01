@@ -2,8 +2,9 @@ import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { CheckCircle2, Gift } from "lucide-react";
+import { CheckCircle2, Gift, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { supabase } from "@/integrations/supabase/client";
 import tisane1 from "@/assets/tisane-1.jpeg";
 import tisane2 from "@/assets/tisane-2.jpeg";
 import tisane3 from "@/assets/tisane-3.jpeg";
@@ -15,6 +16,7 @@ const STORAGE_KEY = "lead-magnet-dismissed";
 export const LeadMagnetDialog = () => {
   const [open, setOpen] = useState(false);
   const [email, setEmail] = useState("");
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     if (sessionStorage.getItem(STORAGE_KEY)) return;
@@ -27,15 +29,30 @@ export const LeadMagnetDialog = () => {
     setOpen(false);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email) return;
-    toast.success("Merci !", {
-      description: "Votre guide gratuit arrive dans votre boîte courriel.",
-      position: "top-center",
-    });
-    setEmail("");
-    close();
+    if (!email || submitting) return;
+    setSubmitting(true);
+    try {
+      const { data, error } = await supabase.functions.invoke("newsletter-subscribe", {
+        body: { email },
+      });
+      if (error || (data as { error?: string })?.error) {
+        throw new Error(error?.message || (data as { error?: string }).error);
+      }
+      toast.success("Merci !", {
+        description: "Votre guide gratuit arrive dans votre boîte courriel.",
+        position: "top-center",
+      });
+      setEmail("");
+      close();
+    } catch (err) {
+      toast.error("Une erreur est survenue", {
+        description: (err as Error).message || "Veuillez réessayer.",
+      });
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -70,8 +87,8 @@ export const LeadMagnetDialog = () => {
                 required
                 className="h-11 bg-background"
               />
-              <Button type="submit" size="lg" className="w-full h-11">
-                Recevoir mon guide gratuit
+              <Button type="submit" size="lg" className="w-full h-11" disabled={submitting}>
+                {submitting ? <><Loader2 className="mr-2 h-4 w-4 animate-spin" /> Envoi…</> : "Recevoir mon guide gratuit"}
               </Button>
             </form>
             <div className="flex flex-wrap gap-4 mt-5 text-xs text-muted-foreground">
