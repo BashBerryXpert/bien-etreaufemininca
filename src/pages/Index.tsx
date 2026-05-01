@@ -168,7 +168,13 @@ const Index = () => {
         <div className="container-narrow">
           <div className="grid lg:grid-cols-2 gap-12 items-center bg-card rounded-sm shadow-elegant overflow-hidden">
             <div className="grid grid-cols-2 gap-2 p-3 bg-primary-soft">
-              {tisaneImages.map((src, i) => (
+              <img
+                src={tisane5}
+                alt="Recette illustrée Tisane Anti-Stress Camomille & Mélisse"
+                loading="lazy"
+                className="col-span-2 w-full h-full object-cover rounded-sm aspect-[4/3]"
+              />
+              {[tisane1, tisane2, tisane3, tisane4].map((src, i) => (
                 <img
                   key={i}
                   src={src}
