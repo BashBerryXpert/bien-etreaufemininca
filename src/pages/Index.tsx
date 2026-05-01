@@ -161,7 +161,7 @@ const Index = () => {
             <p className="text-center py-16 text-muted-foreground">No products found</p>
           ) : (
             <div className="grid md:grid-cols-2 gap-8">
-              {products.slice(0, 2).map((p) => (
+              {products.map((p) => (
                 <ProductCard key={p.node.id} product={p} />
               ))}
             </div>
