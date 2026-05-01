@@ -15,6 +15,7 @@ import tisane1 from "@/assets/tisane-1.jpeg";
 import tisane2 from "@/assets/tisane-2.jpeg";
 import tisane3 from "@/assets/tisane-3.jpeg";
 import tisane4 from "@/assets/tisane-4.jpeg";
+import tisane5 from "@/assets/tisane-5.jpeg";
 import { ArrowRight, Sparkles, HeartPulse, Sun, ShieldCheck, Quote, CheckCircle2, Gift, Leaf } from "lucide-react";
 import { toast } from "sonner";
 
@@ -36,7 +37,7 @@ const struggles = [
   },
 ];
 
-const tisaneImages = [tisane1, tisane2, tisane3, tisane4];
+const tisaneImages = [tisane5, tisane1, tisane2, tisane3, tisane4];
 
 const Index = () => {
   useCartSync();
@@ -57,13 +58,7 @@ const Index = () => {
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    const link = document.createElement("a");
-    link.href = "/downloads/5-tisanes-anti-stress.pdf";
-    link.download = "5-Tisanes-Anti-Stress.pdf";
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    toast.success("Merci ! Votre guide est en téléchargement.", { description: "Une copie vous sera également envoyée par courriel sous peu.", position: "top-center" });
+    toast.success("Merci !", { description: "Votre guide gratuit arrive dans votre boîte courriel.", position: "top-center" });
     setEmail("");
   };
 
@@ -173,7 +168,13 @@ const Index = () => {
         <div className="container-narrow">
           <div className="grid lg:grid-cols-2 gap-12 items-center bg-card rounded-sm shadow-elegant overflow-hidden">
             <div className="grid grid-cols-2 gap-2 p-3 bg-primary-soft">
-              {tisaneImages.map((src, i) => (
+              <img
+                src={tisane5}
+                alt="Recette illustrée Tisane Anti-Stress Camomille & Mélisse"
+                loading="lazy"
+                className="col-span-2 w-full h-full object-cover rounded-sm aspect-[4/3]"
+              />
+              {[tisane1, tisane2, tisane3, tisane4].map((src, i) => (
                 <img
                   key={i}
                   src={src}
