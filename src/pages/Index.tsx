@@ -5,31 +5,38 @@ import { Input } from "@/components/ui/input";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { ProductCard } from "@/components/ProductCard";
+import { LeadMagnetDialog } from "@/components/LeadMagnetDialog";
 import { fetchProducts, type ShopifyProduct } from "@/lib/shopify";
 import { useCartSync } from "@/hooks/useCartSync";
 import heroImage from "@/assets/hero-woman.jpg";
 import portrait from "@/assets/chantal-portrait.jpg";
 import texture from "@/assets/texture-herbs.jpg";
-import { ArrowRight, Sparkles, HeartPulse, Sun, ShieldCheck, Quote, CheckCircle2 } from "lucide-react";
+import tisane1 from "@/assets/tisane-1.jpeg";
+import tisane2 from "@/assets/tisane-2.jpeg";
+import tisane3 from "@/assets/tisane-3.jpeg";
+import tisane4 from "@/assets/tisane-4.jpeg";
+import { ArrowRight, Sparkles, HeartPulse, Sun, ShieldCheck, Quote, CheckCircle2, Gift, Leaf } from "lucide-react";
 import { toast } from "sonner";
 
 const struggles = [
   {
     icon: HeartPulse,
-    title: "Fatigue persistante",
-    desc: "Retrouvez votre énergie grâce à une approche nutritionnelle adaptée à votre nouvelle physiologie.",
+    title: "Fatigue & énergie",
+    desc: "Retrouvez votre vitalité grâce à une approche naturelle adaptée à votre physiologie.",
   },
   {
     icon: Sun,
-    title: "Bouffées de chaleur",
-    desc: "Apaisez naturellement les variations hormonales avec des gestes simples du quotidien.",
+    title: "Équilibre hormonal",
+    desc: "Apaisez les variations naturelles de votre corps avec des gestes simples du quotidien.",
   },
   {
     icon: Sparkles,
-    title: "Humeur et sommeil",
+    title: "Sommeil & sérénité",
     desc: "Stabilisez vos émotions et redécouvrez des nuits réparatrices, en douceur.",
   },
 ];
+
+const tisaneImages = [tisane1, tisane2, tisane3, tisane4];
 
 const Index = () => {
   useCartSync();
@@ -38,9 +45,9 @@ const Index = () => {
   const [email, setEmail] = useState("");
 
   useEffect(() => {
-    document.title = "Bien-être au Féminin | Ménopause sereine au Québec";
+    document.title = "Bien-être au Féminin | Santé naturelle pour toutes les femmes";
     const meta = document.querySelector('meta[name="description"]');
-    if (meta) meta.setAttribute("content", "Guides et programmes de Chantal Brisson pour traverser la ménopause avec sérénité. Approche naturelle, bienveillante, expertise québécoise.");
+    if (meta) meta.setAttribute("content", "Guides naturels de Chantal, naturopathe et herboriste, pour toutes les femmes en quête de santé globale. Tisanes, équilibre hormonal et solutions douces.");
     fetchProducts(12).then((p) => {
       setProducts(p);
       setLoading(false);
@@ -50,26 +57,29 @@ const Index = () => {
   const handleNewsletter = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    toast.success("Merci !", { description: "Votre checklist arrive dans votre boîte courriel.", position: "top-center" });
+    toast.success("Merci !", { description: "Votre guide gratuit arrive dans votre boîte courriel.", position: "top-center" });
     setEmail("");
   };
 
   return (
     <div className="min-h-screen bg-background">
       <Header />
+      <LeadMagnetDialog />
 
       {/* HERO */}
       <section className="relative bg-hero overflow-hidden">
         <div className="container-narrow grid md:grid-cols-2 gap-12 items-center py-20 md:py-28">
           <div className="space-y-7">
-            <span className="inline-block text-xs tracking-[0.3em] uppercase text-primary font-medium">Pour les femmes du Québec · 45–65 ans</span>
+            <span className="inline-block text-xs tracking-[0.3em] uppercase text-primary font-medium">
+              Pour toutes les femmes en quête de santé globale
+            </span>
             <h1 className="font-serif text-4xl md:text-5xl lg:text-6xl leading-[1.05] text-balance text-primary-deep">
-              Retrouvez l'équilibre hormonal,<br />
+              Retrouvez votre équilibre,<br />
               <em className="italic font-normal">naturellement.</em>
             </h1>
             <p className="text-lg text-foreground/75 max-w-md leading-relaxed">
-              Une approche éducative, accessible et profondément rassurante pour traverser la ménopause
-              avec confiance, énergie et sérénité.
+              Une approche éducative, accessible et profondément rassurante — guidée par la naturopathie
+              et l'herboristerie — pour traverser chaque étape de votre vie avec confiance et sérénité.
             </p>
             <div className="flex flex-wrap gap-4 pt-2">
               <Button asChild size="lg" className="h-12 px-8">
@@ -81,14 +91,14 @@ const Index = () => {
             </div>
             <div className="flex items-center gap-4 pt-4 text-xs text-muted-foreground">
               <ShieldCheck className="h-4 w-4 text-primary" />
-              <span>Téléchargement immédiat · Paiement sécurisé · Support en français</span>
+              <span>Téléchargement immédiat · Paiement sécurisé · Support francophone</span>
             </div>
           </div>
           <div className="relative">
             <div className="absolute -inset-4 bg-accent/20 rounded-sm blur-2xl" aria-hidden />
             <img
               src={heroImage}
-              alt="Femme sereine bénéficiant d'un moment de bien-être à la lumière naturelle"
+              alt="Femme sereine au cœur de la nature, profitant d'un moment de bien-être"
               width={1536}
               height={1024}
               className="relative rounded-sm shadow-elegant w-full h-[500px] md:h-[580px] object-cover"
@@ -102,10 +112,11 @@ const Index = () => {
         <div className="text-center max-w-2xl mx-auto mb-16">
           <span className="text-xs tracking-[0.3em] uppercase text-primary">Vous reconnaître</span>
           <h2 className="font-serif text-3xl md:text-4xl mt-3 text-primary-deep text-balance">
-            Vos défis ne sont pas une fatalité.
+            À chaque étape de la vie, votre corps mérite douceur et écoute.
           </h2>
           <p className="mt-4 text-foreground/70 leading-relaxed">
-            La méthode bienveillante de Chantal Brisson s'adresse aux signaux que votre corps vous envoie.
+            La méthode bienveillante de Chantal s'adresse aux signaux que votre corps vous envoie —
+            pour toutes les femmes, à tout âge.
           </p>
         </div>
         <div className="grid md:grid-cols-3 gap-6">
@@ -151,31 +162,81 @@ const Index = () => {
         </div>
       </section>
 
+      {/* LEAD MAGNET — 5 TISANES */}
+      <section className="py-24 relative">
+        <div className="container-narrow">
+          <div className="grid lg:grid-cols-2 gap-12 items-center bg-card rounded-sm shadow-elegant overflow-hidden">
+            <div className="grid grid-cols-2 gap-2 p-3 bg-primary-soft">
+              {tisaneImages.map((src, i) => (
+                <img
+                  key={i}
+                  src={src}
+                  alt={`Aperçu de la recette de tisane anti-stress ${i + 1}`}
+                  loading="lazy"
+                  className="w-full h-full object-cover rounded-sm aspect-square"
+                />
+              ))}
+            </div>
+            <div className="p-8 md:p-12">
+              <span className="inline-flex items-center gap-1.5 text-xs tracking-[0.3em] uppercase text-primary mb-3">
+                <Gift className="h-3.5 w-3.5" /> Cadeau gratuit
+              </span>
+              <h2 className="font-serif text-3xl md:text-4xl text-primary-deep text-balance leading-tight">
+                Téléchargez mon Guide Gratuit : 5 Tisanes Anti-Stress
+              </h2>
+              <p className="mt-4 text-foreground/75 leading-relaxed">
+                Apprenez à préparer des infusions apaisantes (Camomille, Mélisse, Lavande,
+                Verveine, Tilleul...) pour calmer votre esprit naturellement.
+              </p>
+              <form onSubmit={handleNewsletter} className="mt-6 flex flex-col sm:flex-row gap-3">
+                <Input
+                  type="email"
+                  placeholder="Votre adresse courriel"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  required
+                  className="h-12 bg-background"
+                />
+                <Button type="submit" size="lg" className="h-12 px-6 whitespace-nowrap">
+                  Recevoir gratuitement
+                </Button>
+              </form>
+              <div className="flex flex-wrap gap-5 mt-5 text-xs text-muted-foreground">
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> 5 recettes illustrées</span>
+                <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> 100% gratuit</span>
+                <span className="flex items-center gap-1.5"><Leaf className="h-3.5 w-3.5 text-primary" /> Plantes douces & naturelles</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* AUTHORITY */}
       <section className="py-24 container-narrow">
         <div className="grid md:grid-cols-2 gap-14 items-center">
           <div className="relative order-2 md:order-1">
             <img
               src={portrait}
-              alt="Portrait de Chantal Brisson, mentor en bien-être féminin"
+              alt="Portrait de Chantal, naturopathe et herboriste"
               loading="lazy"
               width={1024}
               height={1280}
               className="rounded-sm shadow-elegant w-full max-w-md mx-auto h-[560px] object-cover"
             />
             <div className="absolute -bottom-5 -right-2 md:right-12 bg-card px-5 py-3 rounded-sm shadow-soft text-xs tracking-widest uppercase">
-              <span className="text-primary">15+ ans</span> d'accompagnement
+              <span className="text-primary">Naturopathe</span> & Herboriste
             </div>
           </div>
           <div className="order-1 md:order-2 space-y-6">
-            <span className="text-xs tracking-[0.3em] uppercase text-primary">Votre mentor</span>
+            <span className="text-xs tracking-[0.3em] uppercase text-primary">Votre guide</span>
             <h2 className="font-serif text-3xl md:text-4xl text-primary-deep text-balance">
-              Chantal Brisson — une approche bienveillante, jamais culpabilisante.
+              Chantal — une approche maternelle, jamais culpabilisante.
             </h2>
             <Quote className="h-7 w-7 text-accent" />
             <p className="text-lg text-foreground/80 leading-relaxed italic font-serif">
-              « Mon engagement : vous offrir une information claire, validée et profondément humaine.
-              Vous méritez de vivre cette transition non pas comme une perte, mais comme une renaissance. »
+              « Maman de quatre enfants et aujourd'hui grand-maman, j'ai consacré ma vie à soigner ma
+              famille avec les richesses de la nature. Mon souhait : partager ces solutions douces et
+              éprouvées avec vous, peu importe votre étape de vie. »
             </p>
             <Button asChild variant="outline" size="lg">
               <Link to="/a-propos">Découvrir mon parcours</Link>
@@ -184,38 +245,17 @@ const Index = () => {
         </div>
       </section>
 
-      {/* NEWSLETTER LEAD MAGNET */}
-      <section className="py-20 relative overflow-hidden">
+      {/* TEXTURE NEWSLETTER STRIP */}
+      <section className="py-16 relative overflow-hidden">
         <img src={texture} alt="" aria-hidden className="absolute inset-0 w-full h-full object-cover opacity-25" loading="lazy" />
         <div className="absolute inset-0 bg-warm opacity-90" />
-        <div className="container-narrow relative">
-          <div className="bg-card rounded-sm p-10 md:p-14 shadow-elegant max-w-3xl mx-auto text-center">
-            <span className="text-xs tracking-[0.3em] uppercase text-primary">Cadeau gratuit</span>
-            <h2 className="font-serif text-3xl md:text-4xl mt-3 mb-4 text-primary-deep text-balance">
-              Votre Checklist Équilibre Hormonal en 5 jours
-            </h2>
-            <p className="text-foreground/70 max-w-lg mx-auto mb-7">
-              Recevez gratuitement les 5 gestes essentiels que toute femme devrait connaître pour
-              soutenir son équilibre hormonal au naturel.
-            </p>
-            <form onSubmit={handleNewsletter} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
-              <Input
-                type="email"
-                placeholder="Votre adresse courriel"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                required
-                className="h-12 bg-background"
-              />
-              <Button type="submit" size="lg" className="h-12 px-6 whitespace-nowrap">
-                Recevoir gratuitement
-              </Button>
-            </form>
-            <div className="flex justify-center gap-6 mt-6 text-xs text-muted-foreground flex-wrap">
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> 100% gratuit</span>
-              <span className="flex items-center gap-1.5"><CheckCircle2 className="h-3.5 w-3.5 text-primary" /> Désinscription en 1 clic</span>
-            </div>
-          </div>
+        <div className="container-narrow relative text-center max-w-2xl">
+          <h2 className="font-serif text-2xl md:text-3xl text-primary-deep">
+            Rejoignez une communauté bienveillante de femmes inspirées par la nature.
+          </h2>
+          <p className="mt-3 text-foreground/70">
+            Conseils saisonniers, recettes de plantes et inspirations livrés avec douceur.
+          </p>
         </div>
       </section>
 

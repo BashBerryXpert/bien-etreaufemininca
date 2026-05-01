@@ -20,7 +20,7 @@ export const Header = () => {
       <div className="container-narrow flex items-center justify-between h-20">
         <Link to="/" className="flex flex-col leading-tight" onClick={() => setOpen(false)}>
           <span className="font-serif text-xl tracking-tight text-primary-deep">Bien-être au Féminin</span>
-          <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-0.5">Chantal Brisson · Québec</span>
+          <span className="text-[10px] uppercase tracking-[0.25em] text-muted-foreground mt-0.5">par Chantal · Naturopathe & Herboriste</span>
         </Link>
 
         <nav className="hidden md:flex items-center gap-9">
