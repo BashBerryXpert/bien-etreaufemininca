@@ -49,8 +49,14 @@ const Index = () => {
     document.title = "Bien-être au Féminin | Santé naturelle pour toutes les femmes";
     const meta = document.querySelector('meta[name="description"]');
     if (meta) meta.setAttribute("content", "Guides naturels de Chantal, naturopathe et herboriste, pour toutes les femmes en quête de santé globale. Tisanes, équilibre hormonal et solutions douces.");
-    fetchProducts(12).then((p) => {
-      setProducts(p);
+    fetchProducts(20, "-title:DON'T -title:HAY -title:MENOPAUSE -title:'master of your body'").then((p) => {
+      // Keep only the two French guides we want to feature
+      const allowed = ["ménopause", "rhume des foins"];
+      const filtered = p.filter((prod) => {
+        const t = prod.node.title.toLowerCase();
+        return allowed.some((kw) => t.includes(kw));
+      });
+      setProducts(filtered);
       setLoading(false);
     });
   }, []);
