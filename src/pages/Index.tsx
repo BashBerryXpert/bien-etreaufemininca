@@ -225,8 +225,8 @@ const Index = () => {
                   required
                   className="h-12 bg-background"
                 />
-                <Button type="submit" size="lg" className="h-12 px-6 whitespace-nowrap">
-                  Recevoir gratuitement
+                <Button type="submit" size="lg" className="h-12 px-6 whitespace-nowrap" disabled={submitting}>
+                  {submitting ? "Envoi…" : "Recevoir gratuitement"}
                 </Button>
               </form>
               <div className="flex flex-wrap gap-5 mt-5 text-xs text-muted-foreground">
