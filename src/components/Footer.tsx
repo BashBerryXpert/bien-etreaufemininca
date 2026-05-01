@@ -23,16 +23,16 @@ export const Footer = () => {
         <div>
           <h4 className="font-serif text-base mb-4">Confiance</h4>
           <ul className="space-y-2 text-sm opacity-85">
-            <li>Paiement sécurisé Shopify</li>
+            <li>Paiement sécurisé</li>
             <li>Téléchargement instantané</li>
-            <li>Support en français</li>
+            <li>Support francophone</li>
           </ul>
         </div>
       </div>
       <div className="border-t border-primary-foreground/10">
         <div className="container-narrow py-5 text-xs opacity-60 flex flex-wrap justify-between gap-3">
-          <span>© {new Date().getFullYear()} Bien-être au Féminin · Chantal Brisson</span>
-          <span>Conçu avec bienveillance au Québec</span>
+          <span>© {new Date().getFullYear()} Bien-être au Féminin · Chantal</span>
+          <span>Conçu avec bienveillance pour toutes les femmes</span>
         </div>
       </div>
     </footer>
