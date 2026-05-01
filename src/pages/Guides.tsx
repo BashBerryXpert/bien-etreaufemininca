@@ -13,8 +13,13 @@ const Guides = () => {
 
   useEffect(() => {
     document.title = "Nos Guides d'Accompagnement | Bien-être au Féminin";
-    fetchProducts(24).then((p) => {
-      setProducts(p);
+    fetchProducts(50).then((p) => {
+      const allowed = ["ménopause", "rhume des foins"];
+      const filtered = p.filter((prod) => {
+        const t = prod.node.title.toLowerCase();
+        return allowed.some((kw) => t.includes(kw));
+      });
+      setProducts(filtered);
       setLoading(false);
     });
   }, []);
