@@ -15,6 +15,7 @@ import tisane1 from "@/assets/tisane-1.jpeg";
 import tisane2 from "@/assets/tisane-2.jpeg";
 import tisane3 from "@/assets/tisane-3.jpeg";
 import tisane4 from "@/assets/tisane-4.jpeg";
+import tisane5 from "@/assets/tisane-5.jpeg";
 import { ArrowRight, Sparkles, HeartPulse, Sun, ShieldCheck, Quote, CheckCircle2, Gift, Leaf } from "lucide-react";
 import { toast } from "sonner";
 
@@ -36,7 +37,7 @@ const struggles = [
   },
 ];
 
-const tisaneImages = [tisane1, tisane2, tisane3, tisane4];
+const tisaneImages = [tisane5, tisane1, tisane2, tisane3, tisane4];
 
 const Index = () => {
   useCartSync();
