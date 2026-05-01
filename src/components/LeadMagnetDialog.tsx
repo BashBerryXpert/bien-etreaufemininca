@@ -8,7 +8,6 @@ import tisane1 from "@/assets/tisane-1.jpeg";
 import tisane2 from "@/assets/tisane-2.jpeg";
 import tisane3 from "@/assets/tisane-3.jpeg";
 import tisane4 from "@/assets/tisane-4.jpeg";
-import tisane5 from "@/assets/tisane-5.jpeg";
 
 const STORAGE_KEY = "lead-magnet-dismissed";
 
@@ -43,7 +42,6 @@ export const LeadMagnetDialog = () => {
       <DialogContent className="max-w-3xl p-0 overflow-hidden">
         <div className="grid md:grid-cols-2">
           <div className="relative bg-primary-soft p-3 grid grid-cols-2 gap-2">
-            <img src={tisane5} alt="Recette Tisane Anti-Stress Camomille & Mélisse" loading="lazy" className="col-span-2 w-full h-full object-cover rounded-sm aspect-square" />
             {[tisane1, tisane2, tisane3, tisane4].map((src, i) => (
               <img key={i} src={src} alt={`Aperçu tisane ${i + 1}`} loading="lazy" className="w-full h-full object-cover rounded-sm aspect-square" />
             ))}
