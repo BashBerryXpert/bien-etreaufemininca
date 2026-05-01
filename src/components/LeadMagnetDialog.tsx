@@ -29,8 +29,15 @@ export const LeadMagnetDialog = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
-    toast.success("Merci !", {
-      description: "Votre guide gratuit arrive dans votre boîte courriel.",
+    // Trigger immediate PDF download
+    const link = document.createElement("a");
+    link.href = "/downloads/5-tisanes-anti-stress.pdf";
+    link.download = "5-Tisanes-Anti-Stress.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    toast.success("Merci ! Votre guide est en téléchargement.", {
+      description: "Une copie vous sera également envoyée par courriel sous peu.",
       position: "top-center",
     });
     setEmail("");
