@@ -7,10 +7,10 @@ export const Footer = () => {
         <div className="md:col-span-2">
           <p className="font-serif text-2xl mb-3">Bien-être au Féminin</p>
           <p className="text-sm opacity-80 max-w-sm leading-relaxed">
-            L'accompagnement bienveillant de Chantal Brisson pour les femmes du Québec qui traversent
-            la ménopause et les transitions hormonales avec sérénité.
+            L'accompagnement bienveillant de Chantal, naturopathe et herboriste, pour toutes les
+            femmes en quête d'une santé globale, naturelle et durable.
           </p>
-          <p className="mt-6 text-xs opacity-60 tracking-widest uppercase">Expertise québécoise</p>
+          <p className="mt-6 text-xs opacity-60 tracking-widest uppercase">Solutions naturelles · Tradition & expertise</p>
         </div>
         <div>
           <h4 className="font-serif text-base mb-4">Explorer</h4>

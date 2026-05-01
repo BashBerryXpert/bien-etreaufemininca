@@ -124,15 +124,15 @@ const ProductPage = () => {
               <div className="grid grid-cols-3 gap-2 text-[11px] text-muted-foreground pt-2">
                 <span className="flex items-center gap-1.5"><Download className="h-3.5 w-3.5 text-primary" /> Téléchargement instantané</span>
                 <span className="flex items-center gap-1.5"><ShieldCheck className="h-3.5 w-3.5 text-primary" /> Paiement sécurisé</span>
-                <span className="flex items-center gap-1.5"><Heart className="h-3.5 w-3.5 text-primary" /> Support en français</span>
+                <span className="flex items-center gap-1.5"><Heart className="h-3.5 w-3.5 text-primary" /> Support francophone</span>
               </div>
             </div>
 
             <div className="mt-10 p-6 bg-primary-soft/40 rounded-sm border border-primary-soft">
               <p className="font-serif text-base text-primary-deep mb-2">Pour qui est ce guide ?</p>
               <p className="text-sm text-foreground/75 leading-relaxed">
-                Pour les femmes du Québec qui souhaitent une information claire, professionnelle et
-                rassurante pour traverser leurs transitions hormonales avec confiance.
+                Pour toutes les femmes en quête d'une information claire, douce et naturelle pour
+                accompagner leur santé globale à chaque étape de la vie.
               </p>
             </div>
           </div>
